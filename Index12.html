@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ para ti ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 192, 203, 0.3), transparent);
+            animation: shimmer 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10%, 90% { opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        .romantic-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .phrase-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            font-size: 1.2em;
+            font-style: italic;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            position: relative;
+            z-index: 1;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-maybe {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .btn-maybe:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(78, 205, 196, 0.6);
+        }
+
+        .change-btn {
+            background: linear-gradient(135deg, #ffd93d, #ffb347);
+            color: #2c3e50;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            margin: 10px 5px;
+            box-shadow: 0 5px 15px rgba(255, 217, 61, 0.4);
+        }
+
+        .change-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 217, 61, 0.6);
+        }
+
+        .response-container {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+
+        .response-yes {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #2c3e50;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .response-maybe {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #2c3e50;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 15px;
+            animation: sparkle 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div class="sparkles" id="sparkles"></div>
+    
+    <div class="container">
+        <h1>💖te quiero mucho mi niña 💖</h1>
+        
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=400&fit=crop" alt="Imagen romántica" class="romantic-image" id="romanticImage">
+        </div>
+        
+        <div class="phrase-container" id="phraseContainer">
+            Cargando frase especial...
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <button class="btn change-btn" onclick="changePhraseAndImage()">✨ Nueva Frase ✨</button>
+            <button class="btn change-btn" onclick="changeImage()">🖼️ Nueva Imagen 🖼️</button>
+        </div>
+        
+        <div class="buttons-container">
+            <button class="btn btn-yes" onclick="showResponse('yes')">
+                💕 ¿Quieres ser mi novia? 💕
+            </button>
+            <button class="btn btn-maybe" onclick="showResponse('maybe')">
+                💖 ¿Puedo ser tu novio? 💖
+            </button>
+        </div>
+        
+        <div class="response-container" id="responseContainer"></div>
+    </div>
+
+    <script>
+        const romanticPhrases = [
+            "En un mundo lleno de personas, mis ojos siempre te buscan a ti... 💫",
+            "Eres la razón por la que creo en los cuentos de hadas... ✨",
+            "Cada día contigo es como vivir un hermoso sueño... 🌙",
+            "Tu sonrisa ilumina incluso mis días más oscuros... ☀️",
+            "Eres la melodía más hermosa que mi corazón ha escuchado... 🎵",
+            "Contigo he descubierto que el amor verdadero sí existe... 💝",
+            "Eres mi lugar favorito en todo el universo... 🌟",
+            "Tu amor es el regalo más hermoso que la vida me ha dado... 🎁",
+            "Cada momento contigo se convierte en un recuerdo precioso... 📸",
+            "Eres la respuesta a todas las oraciones que nunca supe que hice... 🙏",
+            "Tu amor ha pintado mi mundo con los colores más hermosos... 🎨",
+            "Eres mi persona favorita en todo el mundo... 👫",
+            "Contigo he aprendido que el hogar no es un lugar, eres tú... 🏠",
+            "Eres la estrella más brillante en mi cielo nocturno... ⭐",
+            "Tu amor es mi canción favorita en repetición... 🎼"
+        ];
+
+        const romanticImages = [
+            "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=400&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1525268771113-32d9e9021a97?w=400&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+        ];
+
+        const responses = {
+            yes: [
+                "¡SÍ! 💕 ¡Ya tenemos una conexión bonita! ¡Esto es el comienzo de algo mágico! ✨",
+                "¡Por supuesto que sí! 💖 Nuestra conexión es especial y hermosa 🌹",
+                "¡SÍ! 💫 Ya siento esa conexión única entre nosotros 💕"
+            ],
+            maybe: [
+                "¡Claro que puedes! 💝 Ya tenemos una conexión bonita y especial 🌟",
+                "¡Sí, puedes ser mi novio! 💖 Nuestra conexión es hermosa 💕",
+                "¡Por supuesto! 💫 Ya siento esa conexión especial contigo 🌹"
+            ]
+        };
+
+        let currentPhraseIndex = 0;
+        let currentImageIndex = 0;
+
+        function getRandomPhrase() {
+            const randomIndex = Math.floor(Math.random() * romanticPhrases.length);
+            return romanticPhrases[randomIndex];
+        }
+
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * romanticImages.length);
+            return romanticImages[randomIndex];
+        }
+
+        function changePhraseAndImage() {
+            document.getElementById('phraseContainer').style.opacity = '0';
+            document.getElementById('romanticImage').style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById('phraseContainer').innerHTML = getRandomPhrase();
+                document.getElementById('romanticImage').src = getRandomImage();
+                document.getElementById('phraseContainer').style.opacity = '1';
+                document.getElementById('romanticImage').style.opacity = '1';
+                createSparkles();
+            }, 250);
+        }
+
+        function changeImage() {
+            document.getElementById('romanticImage').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('romanticImage').src = getRandomImage();
+                document.getElementById('romanticImage').style.opacity = '1';
+            }, 250);
+        }
+
+        function showResponse(type) {
+            const container = document.getElementById('responseContainer');
+            const randomResponse = responses[type][Math.floor(Math.random() * responses[type].length)];
+            
+            container.innerHTML = randomResponse;
+            container.className = `response-container response-${type}`;
+            container.style.display = 'block';
+            
+            if (type === 'yes') {
+                createCelebration();
+            }
+            createSparkles();
+        }
+
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 3000);
+        }
+
+        function createSparkles() {
+            const sparklesContainer = document.getElementById('sparkles');
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.animationDelay = Math.random() * 2 + 's';
+                    sparklesContainer.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+
+        function createCelebration() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const celebration = document.createElement('div');
+                    celebration.style.position = 'fixed';
+                    celebration.style.left = Math.random() * 100 + '%';
+                    celebration.style.top = Math.random() * 100 + '%';
+                    celebration.style.fontSize = '30px';
+                    celebration.style.pointerEvents = 'none';
+                    celebration.style.zIndex = '9999';
+                    celebration.innerHTML = ['💖', '💕', '💝', '🌹', '✨', '🎉'][Math.floor(Math.random() * 6)];
+                    celebration.style.animation = 'pulse 2s ease-in-out';
+                    
+                    document.body.appendChild(celebration);
+                    
+                    setTimeout(() => {
+                        celebration.remove();
+                    }, 2000);
+                }, i * 50);
+            }
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            changePhraseAndImage();
+            createHearts();
+            
+            // Cambiar frase automáticamente cada 10 segundos
+            setInterval(() => {
+                if (document.getElementById('responseContainer').style.display !== 'block') {
+                    changePhraseAndImage();
+                }
+            }, 10000);
+        });
+    </script>
+</body>
+</html
