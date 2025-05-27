@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Ti, Mi niña 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 40px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      margin-top: 60px;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    #typewriter {
+      font-size: 1.3em;
+      min-height: 100px;
+      white-space: pre-wrap;
+      border-right: 2px solid #fff;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    #latidos {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ffb6c1;
+      font-weight: bold;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 35px;
+      background: #ff69b4;
+      color: white;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff1493;
+      transform: scale(1.1);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: #1e1e2f;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px #fff3;
+      color: white;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+    }
+
+    .modal-content a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #25D366;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .modal-content a:hover {
+      background: #1ebe5d;
+    }
+
+    .contenedor-frases {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .cuadro {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 25px;
+      width: 300px;
+      min-height: 150px;
+      text-align: center;
+      box-shadow: 0 0 15px #ffffff22;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cuadro:hover {
+      transform: scale(1.05);
+    }
+
+    .frase-carrusel {
+      font-size: 1.1em;
+      font-style: italic;
+      color: #fff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #ffc0cb;
+      }
+      to {
+        text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Para ti, mi persona especial ❤️</h1>
+  <div id="typewriter"></div>
+  <div id="latidos">💕 <span id="contador">0</span> latidos de amor</div>
+  <button onclick="mostrarModal()">¿Puedo estar contigo?</button>
+
+  <div class="contenedor-frases">
+    <div class="cuadro"><div class="frase-carrusel" data-frases='["Eres mi sol en días nublados.", "Tu risa es mi canción favorita.", "Cada día contigo es magia."]'></div></div>
+    <div class="cuadro"><div class="frase-carrusel" data-frases='["No sabía lo que era amor hasta que llegaste tú.", "Tú y yo... historia sin fin.", "Junto a ti, todo tiene sentido."]'></div></div>
+    <div class="cuadro"><div class="frase-carrusel" data-frases='["Te volvería a elegir mil veces.", "Tus abrazos curan todo.", "Nuestro amor es único."]'></div></div>
+  </div>
+</div>
+
+<div id="miModal" class="modal">
+  <div class="modal-content">
+    <h2>💖 ¡Gracias por existir!</h2>
+    <p>Quiero que escribamos juntos una historia bonita, llena de momentos inolvidables. ¿Aceptas caminar conmigo este viaje? 🌙</p>
+    <a href="https://wa.me/51917224831?text=¡Acepto!%20Estoy%20feliz%20de%20estar%20contigo.%20💖" target="_blank">Sí, quiero</a>
+  </div>
+</div>
+
+<script>
+const mensaje = "Mensaje del Corazón\n\nCada día contigo es una nueva aventura llena de amor, risas y momentos inolvidables. Eres la luz que ilumina mis días y la razón por la que sonrío cada mañana. Tu amor ha transformado mi mundo de maneras que nunca imaginé posibles.\n\nPor eso hoy, con todo mi corazón, quiero preguntarte algo...";
+let index = 0;
+
+function escribirMensaje() {
+  const area = document.getElementById("typewriter");
+  if (index < mensaje.length) {
+    area.innerHTML += mensaje.charAt(index);
+    index++;
+    setTimeout(escribirMensaje, 50);
+  }
+}
+escribirMensaje();
+
+let latidos = 0;
+setInterval(() => {
+  latidos++;
+  document.getElementById('contador').textContent = latidos;
+}, 1000);
+
+function mostrarModal() {
+  document.getElementById("miModal").style.display = "block";
+}
+
+const carruseles = document.querySelectorAll(".frase-carrusel");
+carruseles.forEach(cuadro => {
+  const frases = JSON.parse(cuadro.getAttribute("data-frases"));
+  let index = 0;
+  cuadro.textContent = frases[index];
+  setInterval(() => {
+    index = (index + 1) % frases.length;
+    cuadro.textContent = frases[index];
+  }, 4000);
+});
+</script>
+
+</body>
+</html>
